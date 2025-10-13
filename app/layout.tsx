@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Poppins, Lora, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import Script from 'next/script';
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],

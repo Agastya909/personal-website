@@ -1,19 +1,25 @@
 import Image from "next/image";
 import SocialBtn from "./components/socialBtn";
-import WorkHistoryCard from "./components/workHistoryCard";
-import Divider from "./components/divider";
+import WorkHistoryEntry from "./components/workHistoryEntry";
 import Nav from "./components/nav";
+import ProjectShowcase from "./components/projectShowcase";
+import Divider from "./components/divider";
+import SkillsStacked from "./components/skillsStacked";
+import { yearsOfExperience } from "./lib/dates";
+
+const CAREER_START = { year: 2023, month: 2 };
 
 const TIMELINE_DATA = [
   {
     role: "Product Engineer",
     company: "Shurutech",
-    start_date: "JUNE 2024",
-    end_date: "Present",
+    start: { year: 2024, month: 6 },
+    end: null,
     link: "https://shurutech.com/",
+    current: true,
     stack: [
       "Golang",
-      "K8",
+      "Kubernetes",
       "RabbitMQ",
       "Python",
       "Django",
@@ -22,73 +28,175 @@ const TIMELINE_DATA = [
       "Airflow",
     ],
     work: [
-      "Currently working with a payment based product using golang and K8 in a microservice architecture.",
-      "Using RabbitMQ for offloading heavy tasks from main API.",
-      "Previously worked with django and airflow on a B2B product for credit score calculation which will be used by various financial institutions.",
-      "Worked on a data pipeline for the product using python and airflow.",
+      "Building a payments platform in Go on Kubernetes, using a microservice architecture designed for reliability and horizontal scale.",
+      "Offloading long-running and heavy tasks from the main API onto RabbitMQ-backed workers to keep request latency low.",
+      "Previously built a B2B credit-scoring product with Django and Airflow for use by financial institutions.",
+      "Designed and ran data pipelines feeding that product using Python and Airflow.",
     ],
   },
   {
     role: "Software Engineer",
     company: "PickMyWork",
-    start_date: "FEB 2023",
-    end_date: "MAY 2024",
+    start: { year: 2023, month: 2 },
+    end: { year: 2024, month: 5 },
     link: "https://www.pickmywork.com/",
     stack: ["React Native", "ReactJS", "Node.js", "ExpressJS", "MySQL", "AWS"],
     work: [
-      "Worked with FCM for push notifications from scratch.",
-      "Bumped up node for app from v14 to v18.",
-      "Created mobile app componenets such as story viewer, side nav bar, etc.",
-      "Improved API performance by implementing redis caching, using better DB schema.",
+      "Built push notifications from scratch using FCM.",
+      "Upgraded the app's Node runtime from v14 to v18.",
+      "Built reusable mobile components including a story viewer and a side navigation bar.",
+      "Improved API performance with Redis caching and better DB schema design.",
     ],
   },
   {
     role: "Software Engineer Intern",
     company: "PickMyWork",
-    start_date: "JULY 2022",
-    end_date: "OCT 2022",
+    start: { year: 2022, month: 7 },
+    end: { year: 2022, month: 10 },
     link: "https://www.pickmywork.com/",
     stack: ["Node.js", "ExpressJS", "MySQL", "Redis"],
-    work: ["Worked with redis on API caching and performance optimization."],
+    work: ["Worked on Redis-based API caching and performance optimization."],
   },
 ];
 
+const PROJECTS = [
+  {
+    title: "Workout Tracker",
+    tagline: "workout.agastya-rajawat.in",
+    description:
+      "A workout tracking app I built and actually use myself — build routines, log sessions in real time, and see progress over time. Open to the public with its own sign up.",
+    features: [
+      "Routine builder",
+      "Live logger with pre-filled sets",
+      "Backfill past workouts",
+      "Per-exercise progress charts",
+      "Consistency heatmap",
+      "Global & per-routine streaks",
+    ],
+    link: "https://workout.agastya-rajawat.in",
+    cover_img: "/workout-tracker-home.png",
+    badge: "Live" as const,
+  },
+  {
+    title: "This Site",
+    tagline: "github.com/Agastya909/personal-website",
+    description:
+      "This portfolio, open source. Next.js, TypeScript, and Tailwind — fork it and make it your own.",
+    features: [
+      "Light & dark theme, no JS-heavy widgets",
+      "Card-free, typography-led design",
+      "Easy to fork and customize",
+    ],
+    link: "https://github.com/Agastya909/personal-website",
+    cover_img: "/portfolio-home.jpg",
+    badge: "Open source" as const,
+  },
+];
+
+const SKILLS = [
+  {
+    group: "Languages",
+    items: ["Golang", "TypeScript"],
+  },
+  {
+    group: "Frameworks",
+    items: ["Gin", "Echo", "Express"],
+  },
+  {
+    group: "Web & Mobile",
+    items: ["React Native", "Next.js", "React"],
+  },
+  {
+    group: "Databases",
+    items: ["Postgres", "MySQL", "Redis", "MongoDB"],
+  },
+  {
+    group: "Cloud & Infra",
+    items: [
+      "AWS (EC2, S3, ECS, Fargate, RDS, CloudFront, Route 53, Secrets Manager, ELB)",
+      "Firebase",
+      "Docker",
+      "GitHub Actions",
+    ],
+  },
+  {
+    group: "Messaging",
+    items: ["RabbitMQ", "Kafka"],
+  },
+  {
+    group: "Observability",
+    items: ["New Relic", "Last9"],
+  },
+  {
+    group: "Auth & API",
+    items: ["Auth0", "JWT", "REST API design", "Nginx"],
+  },
+  {
+    group: "Testing",
+    items: [
+      "Unit & integration testing",
+      "HTTP/API testing",
+      "DB mocking",
+    ],
+  },
+];
+
+function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
+  return (
+    <div className="mb-8">
+      <p className="mb-1 text-xs font-medium uppercase tracking-widest text-accent">
+        {eyebrow}
+      </p>
+      <h2 className="font-display text-2xl font-semibold tablet:text-3xl">
+        {title}
+      </h2>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
-    <div className="my-0 zero:max-pc:my-4 zero:max-pc:mx-2">
+    <div id="top" className="mx-auto max-w-[940px] px-6 pb-24 tablet:px-10">
       <Nav />
-      <p className="text-sm text-gray-400 font-medium">{"Hi, I'm"}</p>
-      <p className="text-4xl font-medium mt-2 font-playFair zero:max-tablet:text-4xl">
-        Agastya Rajawat
-      </p>
-      <div className="flex flex-row place-items-baseline mt-4">
-        <Image
-          src={"/location.png"}
-          alt="location"
-          width={20}
-          height={20}
-          className="invert"
-        />
-        <p className="text-gray-400 mx-2">Jaipur</p>
-      </div>
-      <p className="text-2xl my-2 animate-changeNameColor font-medium zero:max-tablet:text-xl">
-        Backend, Frontend and Mobile Developer
-      </p>
-      <p className="my-2 text-gray-300 text-sm mb-4">
-        I have over 2 years of experience working and developing backend,
-        frontend and mobile applications.
-      </p>
-      <Divider />
-      <div className="flex flex-row justify-between place-items-center zero:max-tablet:flex-col my-3">
-        <p className="text-xl font-medium zero:max-tablet:text-lg">
-          Ping me here
+
+      <section className="animate-fade-up">
+        <p className="font-mono text-xs font-medium uppercase tracking-widest text-accent">
+          Hi, I&apos;m
         </p>
-        <div className="flex flex-row zero:max-mobile:flex-col">
+        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight tablet:text-6xl">
+          Agastya Rajawat
+        </h1>
+        <p className="mt-3 text-xl text-muted-strong tablet:text-2xl">
+          Backend-leaning software engineer
+        </p>
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
+          <span className="flex items-center gap-2">
+            <Image
+              src="/location.png"
+              alt=""
+              width={16}
+              height={16}
+              className="dark:invert opacity-70"
+            />
+            Jaipur, India
+          </span>
+          <span className="hidden tablet:inline text-border">|</span>
+          <span className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+            Product Engineer at Shurutech
+          </span>
+        </div>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-strong">
+          {yearsOfExperience(CAREER_START)}+ years building backend systems
+          in Go and TypeScript, with production experience across mobile
+          and web.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-3">
           <SocialBtn
-            alt="Github"
+            alt="GitHub"
             href="https://github.com/agastya909"
             src="/github.png"
-            invert={true}
+            invert
           />
           <SocialBtn
             alt="LinkedIn"
@@ -99,17 +207,44 @@ export default function Home() {
             alt="Email"
             href="mailto:agastyarajawat909@gmail.com"
             src="/email.png"
-            invert={true}
+            invert
           />
         </div>
-      </div>
-      <Divider />
-      <p className="text-xl font-medium my-3">Work History</p>
-      <div>
-        {TIMELINE_DATA.map((data, index) => {
-          return <WorkHistoryCard key={index} {...data} />;
-        })}
-      </div>
+      </section>
+
+      <section id="work" className="mt-24 scroll-mt-24">
+        <SectionHeading eyebrow="Experience" title="Where I've worked" />
+        <Divider />
+        <div className="mt-4">
+          {TIMELINE_DATA.map((data, index) => (
+            <WorkHistoryEntry key={index} {...data} />
+          ))}
+        </div>
+      </section>
+
+      <section id="projects" className="mt-24 scroll-mt-24">
+        <SectionHeading eyebrow="Projects" title="Something I've shipped" />
+        <Divider />
+        <div className="mt-4 flex flex-col divide-y divide-border">
+          {PROJECTS.map((project) => (
+            <div key={project.title} className="py-8 first:pt-0">
+              <ProjectShowcase {...project} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="skills" className="mt-24 scroll-mt-24">
+        <SectionHeading eyebrow="Skills" title="Tools I reach for" />
+        <Divider />
+        <div className="mt-4">
+          <SkillsStacked groups={SKILLS} />
+        </div>
+      </section>
+
+      <footer className="mt-24 border-t border-border pt-8 text-sm text-muted">
+        <p>&copy; {new Date().getFullYear()} Agastya Rajawat.</p>
+      </footer>
     </div>
   );
 }

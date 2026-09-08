@@ -1,12 +1,10 @@
 export default function Btn({ href, text }: { href: string; text: string }) {
   return (
-    <div className="w-fit shadow-[0_0_1px_0_#ee4266]  bg-[#101010] rounded-full hover:bg-[#ee4266] transition-colors mb-4">
-      <a
-        href={href}
-        className="font-medium text-[#ee4266] hover:text-white transition-colors py-2 px-4 block zero:max-tablet:text-sm"
-      >
-        {text}
-      </a>
-    </div>
+    <a
+      href={href}
+      className="inline-block rounded-full border border-accent px-5 py-2.5 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-background"
+    >
+      {text}
+    </a>
   );
 }

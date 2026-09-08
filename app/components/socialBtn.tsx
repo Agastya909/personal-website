@@ -12,18 +12,20 @@ export default function SocialBtn({
   invert?: boolean;
 }) {
   return (
-    <button
-      onClick={() => window.open(href, "_blank")}
-      className={`flex flex-row place-items-center rounded-full bg-neutral-800 px-3 py-2 m-1 hover:bg-neutral-600`}
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
     >
       <Image
         src={src}
         alt={alt}
-        width={20}
-        height={20}
-        className={`${invert ? "invert" : ""}`}
+        width={16}
+        height={16}
+        className={invert ? "dark:invert" : ""}
       />
-      <p className="mx-1 text-sm">{alt}</p>
-    </button>
+      {alt}
+    </a>
   );
 }

@@ -1,18 +1,116 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  --background: #101010;
-  --foreground: #ffffff;
-  --nav-background: #6b6b6b2e;
-  --nav-item: #f2e5bf;
+  --background: #fbfaf8;
+  --foreground: #161513;
+  --muted: #6b6a66;
+  --muted-strong: #47463f;
+  --surface: #ffffff;
+  --border: #e6e4de;
+  --accent: #c8542f;
+  --accent-soft: #f3e3da;
+  --ring: #c8542f33;
+}
+
+:root[data-theme="dark"] {
+  --background: #0d0d0c;
+  --foreground: #f3f2ee;
+  --muted: #948f83;
+  --muted-strong: #c7c3b8;
+  --surface: #151513;
+  --border: #29281f;
+  --accent: #e98a5c;
+  --accent-soft: #2c2018;
+  --ring: #e98a5c33;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0d0d0c;
+    --foreground: #f3f2ee;
+    --muted: #948f83;
+    --muted-strong: #c7c3b8;
+    --surface: #151513;
+    --border: #29281f;
+    --accent: #e98a5c;
+    --accent-soft: #2c2018;
+    --ring: #e98a5c33;
+  }
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --breakpoint-zero: 0px;
+  --breakpoint-mobile: 400px;
+  --breakpoint-tablet: 720px;
+  --breakpoint-pc: 1024px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-ring: var(--ring);
+
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in: fade-in 0.5s ease both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Poppins, Helvetica, sans-serif;
-  max-width: 640px;
-  margin: 0 auto;
+  font-family: var(--font-sans);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

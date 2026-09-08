@@ -1,6 +1,6 @@
 import Image from "next/image";
 import SocialBtn from "./components/socialBtn";
-import WorkHistoryCard from "./components/workHistoryCard";
+import WorkHistoryEntry from "./components/workHistoryEntry";
 import Nav from "./components/nav";
 import ProjectShowcase from "./components/projectShowcase";
 import Divider from "./components/divider";
@@ -10,8 +10,8 @@ const TIMELINE_DATA = [
   {
     role: "Product Engineer",
     company: "Shurutech",
-    start_date: "JUNE 2024",
-    end_date: "PRESENT",
+    start: { year: 2024, month: 6 },
+    end: null,
     link: "https://shurutech.com/",
     current: true,
     stack: [
@@ -34,8 +34,8 @@ const TIMELINE_DATA = [
   {
     role: "Software Engineer",
     company: "PickMyWork",
-    start_date: "FEB 2023",
-    end_date: "MAY 2024",
+    start: { year: 2023, month: 2 },
+    end: { year: 2024, month: 5 },
     link: "https://www.pickmywork.com/",
     stack: ["React Native", "ReactJS", "Node.js", "ExpressJS", "MySQL", "AWS"],
     work: [
@@ -48,8 +48,8 @@ const TIMELINE_DATA = [
   {
     role: "Software Engineer Intern",
     company: "PickMyWork",
-    start_date: "JULY 2022",
-    end_date: "OCT 2022",
+    start: { year: 2022, month: 7 },
+    end: { year: 2022, month: 10 },
     link: "https://www.pickmywork.com/",
     stack: ["Node.js", "ExpressJS", "MySQL", "Redis"],
     work: ["Worked on Redis-based API caching and performance optimization."],
@@ -182,9 +182,9 @@ export default function Home() {
       <section id="work" className="mt-24 scroll-mt-24">
         <SectionHeading eyebrow="Experience" title="Where I've worked" />
         <Divider />
-        <div>
+        <div className="mt-4">
           {TIMELINE_DATA.map((data, index) => (
-            <WorkHistoryCard key={index} {...data} />
+            <WorkHistoryEntry key={index} {...data} />
           ))}
         </div>
       </section>

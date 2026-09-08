@@ -2,9 +2,9 @@ import Image from "next/image";
 import SocialBtn from "./components/socialBtn";
 import WorkHistoryCard from "./components/workHistoryCard";
 import Nav from "./components/nav";
-import Chip from "./components/chip";
 import ProjectShowcase from "./components/projectShowcase";
 import Divider from "./components/divider";
+import SkillsList from "./components/skillsList";
 
 const TIMELINE_DATA = [
   {
@@ -76,43 +76,23 @@ const PROJECT = {
 const SKILLS = [
   {
     group: "Languages",
-    items: [
-      { name: "Golang", src: "/golang.png" },
-      { name: "TypeScript", src: "/typescript.png" },
-      { name: "Python", src: "/python.png" },
-    ],
+    items: ["Golang", "TypeScript", "Python"],
   },
   {
     group: "Frameworks",
-    items: [
-      { name: "Express", src: "/express.png", invert: true },
-      { name: "Django", src: "/django.png" },
-    ],
+    items: ["Express", "Django"],
   },
   {
     group: "Web & Mobile",
-    items: [
-      { name: "React Native", src: "/react-native.png" },
-      { name: "Next.js", src: "/nextjs.png", invert: true },
-      { name: "HTML", src: "/html.png" },
-      { name: "Tailwind", src: "/tailwind-css.png" },
-    ],
+    items: ["React Native", "Next.js", "HTML", "Tailwind"],
   },
   {
     group: "Databases",
-    items: [
-      { name: "Postgres", src: "/postgres.png" },
-      { name: "MySQL", src: "/mysql.png" },
-      { name: "Redis", src: "/redis.png" },
-    ],
+    items: ["Postgres", "MySQL", "Redis"],
   },
   {
     group: "Cloud & Infra",
-    items: [
-      { name: "AWS", src: "/aws.png" },
-      { name: "Firebase", src: "/firebase.png" },
-      { name: "Docker", src: "/docker.png" },
-    ],
+    items: ["AWS", "Firebase", "Docker"],
   },
 ];
 
@@ -193,24 +173,9 @@ export default function Home() {
 
       <section id="skills" className="mt-24 scroll-mt-24">
         <SectionHeading eyebrow="Skills" title="Tools I reach for" />
-        <div className="flex flex-col gap-6">
-          {SKILLS.map((group) => (
-            <div key={group.group}>
-              <p className="mb-3 text-sm font-medium text-muted">
-                {group.group}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <Chip
-                    key={item.name}
-                    name={item.name}
-                    src={item.src}
-                    invert={item.invert}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
+        <Divider />
+        <div className="mt-2">
+          <SkillsList groups={SKILLS} />
         </div>
       </section>
 

@@ -4,6 +4,7 @@ import WorkHistoryCard from "./components/workHistoryCard";
 import Nav from "./components/nav";
 import Chip from "./components/chip";
 import ProjectShowcase from "./components/projectShowcase";
+import Divider from "./components/divider";
 
 const TIMELINE_DATA = [
   {
@@ -184,7 +185,10 @@ export default function Home() {
 
       <section id="projects" className="mt-24 scroll-mt-24">
         <SectionHeading eyebrow="Projects" title="Something I've shipped" />
-        <ProjectShowcase {...PROJECT} />
+        <Divider />
+        <div className="mt-10">
+          <ProjectShowcase {...PROJECT} />
+        </div>
       </section>
 
       <section id="skills" className="mt-24 scroll-mt-24">

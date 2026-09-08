@@ -4,7 +4,7 @@ import WorkHistoryCard from "./components/workHistoryCard";
 import Nav from "./components/nav";
 import ProjectShowcase from "./components/projectShowcase";
 import Divider from "./components/divider";
-import SkillsList from "./components/skillsList";
+import SkillsCloud from "./components/skillsCloud";
 
 const TIMELINE_DATA = [
   {
@@ -74,26 +74,25 @@ const PROJECT = {
 };
 
 const SKILLS = [
-  {
-    group: "Languages",
-    items: ["Golang", "TypeScript", "Python"],
-  },
-  {
-    group: "Frameworks",
-    items: ["Express", "Django"],
-  },
-  {
-    group: "Web & Mobile",
-    items: ["React Native", "Next.js", "HTML", "Tailwind"],
-  },
-  {
-    group: "Databases",
-    items: ["Postgres", "MySQL", "Redis"],
-  },
-  {
-    group: "Cloud & Infra",
-    items: ["AWS", "Firebase", "Docker"],
-  },
+  { name: "Golang", weight: 5 },
+  { name: "TypeScript", weight: 5 },
+  { name: "React Native", weight: 4 },
+  { name: "Postgres", weight: 4 },
+  { name: "Python", weight: 4 },
+  { name: "AWS", weight: 4 },
+  { name: "Django", weight: 3 },
+  { name: "Kubernetes", weight: 3 },
+  { name: "Node.js", weight: 3 },
+  { name: "RabbitMQ", weight: 3 },
+  { name: "Next.js", weight: 3 },
+  { name: "MySQL", weight: 3 },
+  { name: "Redis", weight: 3 },
+  { name: "Express", weight: 2 },
+  { name: "Airflow", weight: 2 },
+  { name: "Tailwind", weight: 2 },
+  { name: "Docker", weight: 2 },
+  { name: "Firebase", weight: 1 },
+  { name: "HTML", weight: 1 },
 ];
 
 function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
@@ -174,8 +173,8 @@ export default function Home() {
       <section id="skills" className="mt-24 scroll-mt-24">
         <SectionHeading eyebrow="Skills" title="Tools I reach for" />
         <Divider />
-        <div className="mt-2">
-          <SkillsList groups={SKILLS} />
+        <div className="mt-10">
+          <SkillsCloud skills={SKILLS} />
         </div>
       </section>
 

@@ -6,7 +6,7 @@ export default function SkillsStacked({
   return (
     <div className="flex flex-col divide-y divide-border">
       {groups.map((group) => (
-        <div key={group.group} className="py-5 tablet:py-6">
+        <div key={group.group} className="py-5 first:pt-0 tablet:py-6">
           <p className="font-mono text-xs font-medium uppercase tracking-widest text-accent">
             {group.group}
           </p>

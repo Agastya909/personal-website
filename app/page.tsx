@@ -208,7 +208,7 @@ export default function Home() {
       <section id="projects" className="mt-24 scroll-mt-24">
         <SectionHeading eyebrow="Projects" title="Something I've shipped" />
         <Divider />
-        <div className="mt-10">
+        <div className="mt-4">
           <ProjectShowcase {...PROJECT} />
         </div>
       </section>
@@ -216,7 +216,7 @@ export default function Home() {
       <section id="skills" className="mt-24 scroll-mt-24">
         <SectionHeading eyebrow="Skills" title="Tools I reach for" />
         <Divider />
-        <div className="mt-2">
+        <div className="mt-4">
           <SkillsStacked groups={SKILLS} />
         </div>
       </section>

@@ -18,17 +18,22 @@ export default function WorkHistoryCard({
   current?: boolean;
 }) {
   return (
-    <div className="relative border-l border-border pb-10 pl-8 last:pb-0">
-      <span
-        className={`absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full border-2 border-background ${
-          current ? "bg-accent" : "bg-muted"
-        }`}
-      />
-      <p className="mb-1 text-xs font-medium uppercase tracking-wider text-muted">
-        {start_date} — {end_date}
-      </p>
-      <div className="flex flex-wrap items-baseline gap-x-2">
-        <p className="text-lg font-semibold">{role}</p>
+    <div className="border-t border-border py-6 first:border-t-0 first:pt-0 tablet:py-8">
+      <div className="flex items-center gap-2">
+        <p className="font-mono text-xs font-medium uppercase tracking-widest text-accent">
+          {start_date} — {end_date}
+        </p>
+        {current && (
+          <span className="flex items-center gap-1.5 text-xs font-medium text-accent">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+            Current
+          </span>
+        )}
+      </div>
+      <div className="mt-2 flex flex-wrap items-baseline gap-x-2">
+        <h3 className="font-display text-xl font-semibold tablet:text-2xl">
+          {role}
+        </h3>
         <a
           href={link}
           target="_blank"
@@ -38,7 +43,7 @@ export default function WorkHistoryCard({
           @ {company}
         </a>
       </div>
-      <ul className="mt-3 space-y-1.5">
+      <ul className="mt-4 space-y-1.5">
         {work.map((item, index) => (
           <li
             key={index}
@@ -49,16 +54,7 @@ export default function WorkHistoryCard({
           </li>
         ))}
       </ul>
-      <div className="mt-4 flex flex-wrap gap-2">
-        {stack.map((item, index) => (
-          <span
-            key={index}
-            className="rounded-full border border-border px-2.5 py-1 text-xs font-medium text-muted-strong"
-          >
-            {item}
-          </span>
-        ))}
-      </div>
+      <p className="mt-4 font-mono text-sm text-muted">{stack.join(", ")}</p>
     </div>
   );
 }

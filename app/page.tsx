@@ -181,6 +181,7 @@ export default function Home() {
 
       <section id="work" className="mt-24 scroll-mt-24">
         <SectionHeading eyebrow="Experience" title="Where I've worked" />
+        <Divider />
         <div>
           {TIMELINE_DATA.map((data, index) => (
             <WorkHistoryCard key={index} {...data} />

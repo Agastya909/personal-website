@@ -3,6 +3,7 @@ import SocialBtn from "./components/socialBtn";
 import WorkHistoryCard from "./components/workHistoryCard";
 import Nav from "./components/nav";
 import Chip from "./components/chip";
+import ProjectShowcase from "./components/projectShowcase";
 
 const TIMELINE_DATA = [
   {
@@ -54,46 +55,20 @@ const TIMELINE_DATA = [
   },
 ];
 
-const PROJECTS = [
-  {
-    title: "Personal Website",
-    description:
-      "This site — open source, written in Next.js and Tailwind. Feel free to fork it.",
-    link: "https://github.com/Agastya909/personal-website",
-    techStack: ["TypeScript", "Next.js", "Tailwind CSS"],
-    cover_img: "/portfolio.png",
-  },
-  {
-    title: "Workout Tracker",
-    description:
-      "A simple workout app built with React Native to log and track workouts.",
-    link: "https://github.com/Agastya909/workoutTracker",
-    techStack: ["TypeScript", "React Native", "Redux", "Firebase"],
-    cover_img: "/workoutracker.png",
-  },
-  {
-    title: "Coffee Shop UI",
-    description: "A UI-only app for a shop selling drinks and coffee.",
-    link: "https://github.com/Agastya909/coffeeHouse",
-    techStack: ["TypeScript", "React Native", "Redux"],
-    cover_img: "/coffeeui.png",
-  },
-  {
-    title: "Video Streaming over Web",
-    description:
-      "A web app for uploading and streaming video, using Express and MySQL with local storage.",
-    link: "https://github.com/Agastya909/natflux-web",
-    techStack: ["TypeScript", "Next.js", "Express", "MySQL"],
-    cover_img: "/natfluxweb.png",
-  },
-  {
-    title: "Short-format Video App",
-    description: "A mobile app for viewing short-format streaming video.",
-    link: "https://github.com/Agastya909/natflux-android",
-    techStack: ["TypeScript", "React Native", "Redux"],
-    cover_img: "/natfluxmobile.png",
-  },
-];
+const PROJECT = {
+  title: "Workout Tracker",
+  tagline: "workout.agastya-rajawat.in",
+  description:
+    "A workout tracking app I built and actually use myself — log lifts, track progress over time, and see how your numbers move. Open to the public with its own sign up.",
+  features: [
+    "Email/password authentication with public sign up",
+    "Log workouts and individual lifts by session",
+    "Track progress over time per exercise",
+    "Responsive UI, usable from your phone at the gym",
+  ],
+  link: "https://workout.agastya-rajawat.in",
+  cover_img: "/workoutracker.png",
+};
 
 const SKILLS = [
   {
@@ -148,53 +123,6 @@ function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) 
         {title}
       </h2>
     </div>
-  );
-}
-
-function ProjectCard({
-  title,
-  description,
-  link,
-  tech_stack,
-  cover_img,
-}: {
-  title: string;
-  description: string;
-  link: string;
-  tech_stack: string[];
-  cover_img: string;
-}) {
-  return (
-    <a
-      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-surface transition-all hover:-translate-y-1 hover:border-accent hover:shadow-lg"
-      href={link}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <div className="relative aspect-video overflow-hidden border-b border-border">
-        <Image
-          src={cover_img}
-          alt={title}
-          fill
-          sizes="(min-width: 720px) 33vw, 100vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <p className="font-medium">{title}</p>
-        <p className="flex-1 text-sm text-muted">{description}</p>
-        <div className="flex flex-wrap gap-2 pt-1">
-          {tech_stack.map((tech, index) => (
-            <span
-              key={index}
-              className="rounded-full bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-    </a>
   );
 }
 
@@ -253,19 +181,8 @@ export default function Home() {
       </section>
 
       <section id="projects" className="mt-24 scroll-mt-24">
-        <SectionHeading eyebrow="Projects" title="Things I've built" />
-        <div className="grid grid-cols-1 gap-5 tablet:grid-cols-2">
-          {PROJECTS.map((item, index) => (
-            <ProjectCard
-              key={index}
-              title={item.title}
-              description={item.description}
-              link={item.link}
-              tech_stack={item.techStack}
-              cover_img={item.cover_img}
-            />
-          ))}
-        </div>
+        <SectionHeading eyebrow="Projects" title="Something I've shipped" />
+        <ProjectShowcase {...PROJECT} />
       </section>
 
       <section id="skills" className="mt-24 scroll-mt-24">

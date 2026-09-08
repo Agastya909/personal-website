@@ -1,12 +1,46 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --background: #101010;
   --foreground: #ffffff;
   --nav-background: #6b6b6b2e;
   --nav-item: #f2e5bf;
+}
+
+@theme {
+  --font-lora: "Lora", sans-serif;
+  --font-playFair: "Playfair Display", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+
+  --breakpoint-zero: 0px;
+  --breakpoint-mobile: 320px;
+  --breakpoint-tablet: 480px;
+  --breakpoint-pc: 640px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-nav_bg: var(--nav-background);
+  --color-nav_item_active: #5dfdcb;
+
+  --animate-changeNameColor: changeNameColor 10s infinite alternate;
+
+  @keyframes changeNameColor {
+    0% {
+      color: #fff;
+    }
+    25% {
+      color: #47a8bd;
+    }
+    50% {
+      color: #ffad69;
+    }
+    75% {
+      color: #ee4266;
+    }
+    100% {
+      color: #5dfdcb;
+    }
+  }
 }
 
 body {

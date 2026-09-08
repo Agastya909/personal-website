@@ -76,23 +76,44 @@ const PROJECT = {
 const SKILLS = [
   {
     group: "Languages",
-    items: ["Golang", "TypeScript", "Python"],
+    items: ["Golang", "TypeScript"],
   },
   {
     group: "Frameworks",
-    items: ["Express", "Django"],
+    items: ["Gin", "Echo", "Express"],
   },
   {
     group: "Web & Mobile",
-    items: ["React Native", "Next.js", "HTML", "Tailwind"],
+    items: ["React Native", "Next.js", "React"],
   },
   {
     group: "Databases",
-    items: ["Postgres", "MySQL", "Redis"],
+    items: ["Postgres", "MySQL", "Redis", "MongoDB"],
   },
   {
     group: "Cloud & Infra",
-    items: ["AWS", "Firebase", "Docker"],
+    items: [
+      "AWS (EC2, S3, ECS, Fargate, RDS, CloudFront, Route 53, Secrets Manager, ELB)",
+      "Firebase",
+      "Docker",
+      "GitHub Actions",
+    ],
+  },
+  {
+    group: "Messaging",
+    items: ["RabbitMQ", "Kafka"],
+  },
+  {
+    group: "Observability",
+    items: ["New Relic", "Last9"],
+  },
+  {
+    group: "Auth & API",
+    items: ["Auth0", "JWT", "REST API design", "Nginx"],
+  },
+  {
+    group: "Testing",
+    items: ["Go testing package", "Vitest"],
   },
 ];
 

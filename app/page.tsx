@@ -59,15 +59,17 @@ const PROJECT = {
   title: "Workout Tracker",
   tagline: "workout.agastya-rajawat.in",
   description:
-    "A workout tracking app I built and actually use myself — log lifts, track progress over time, and see how your numbers move. Open to the public with its own sign up.",
+    "A workout tracking app I built and actually use myself — build routines, log sessions in real time, and see progress over time. Open to the public with its own sign up.",
   features: [
-    "Email/password authentication with public sign up",
-    "Log workouts and individual lifts by session",
-    "Track progress over time per exercise",
-    "Responsive UI, usable from your phone at the gym",
+    "Routine builder",
+    "Live logger with pre-filled sets",
+    "Backfill past workouts",
+    "Per-exercise progress charts",
+    "Consistency heatmap",
+    "Global & per-routine streaks",
   ],
   link: "https://workout.agastya-rajawat.in",
-  cover_img: "/workoutracker.png",
+  cover_img: "/workout-tracker-home.png",
 };
 
 const SKILLS = [

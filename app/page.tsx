@@ -113,7 +113,11 @@ const SKILLS = [
   },
   {
     group: "Testing",
-    items: ["Go testing package", "Vitest"],
+    items: [
+      "Unit & integration testing",
+      "HTTP/API testing",
+      "DB mocking",
+    ],
   },
 ];
 

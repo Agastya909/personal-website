@@ -10,15 +10,15 @@ export default function Chip({
   invert?: boolean;
 }) {
   return (
-    <div className="flex flex-row py-2 px-3 w-fit mr-2 my-1 place-items-center shadow-[0_0_1px_0_#ffffff4d] rounded-full">
+    <div className="flex w-fit items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 transition-colors hover:border-accent">
       <Image
         src={src}
         alt={name}
-        width={24}
-        height={24}
-        className={invert ? "invert" : ""}
+        width={18}
+        height={18}
+        className={invert ? "dark:invert" : ""}
       />
-      <p className="text-sm text-neutral-400 ml-1">{name}</p>
+      <p className="text-sm text-muted-strong">{name}</p>
     </div>
   );
 }

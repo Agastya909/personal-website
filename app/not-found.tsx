@@ -1,11 +1,13 @@
-"use client";
 import Btn from "./components/btn";
 
 export default function Errors() {
   return (
-    <div className="my-8 flex flex-col items-center">
-      <Btn href="/" text="← Go to Home" />
-      <p className="text-xl my-8">¯\_(ツ)_/¯ &nbsp;&nbsp; Nothing here to see !</p>
+    <div className="flex min-h-screen flex-col items-center justify-center gap-6 px-6 text-center">
+      <p className="text-6xl font-display font-semibold text-muted">404</p>
+      <p className="text-muted-strong">
+        {"¯\\_(ツ)_/¯ nothing to see here."}
+      </p>
+      <Btn href="/" text="Back to home" />
     </div>
   );
 }

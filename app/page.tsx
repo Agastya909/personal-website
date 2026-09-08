@@ -143,24 +143,36 @@ export default function Home() {
       <Nav />
 
       <section className="animate-fade-up">
-        <p className="mb-3 text-sm font-medium text-muted">Hi, I&apos;m</p>
-        <h1 className="font-display text-4xl font-semibold tracking-tight tablet:text-5xl">
+        <p className="font-mono text-xs font-medium uppercase tracking-widest text-accent">
+          Hi, I&apos;m
+        </p>
+        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight tablet:text-6xl">
           Agastya Rajawat
         </h1>
-        <div className="mt-4 flex items-center gap-2 text-sm text-muted">
-          <Image
-            src="/location.png"
-            alt=""
-            width={16}
-            height={16}
-            className="dark:invert opacity-70"
-          />
-          Jaipur, India
+        <p className="mt-3 text-xl text-muted-strong tablet:text-2xl">
+          Backend-leaning software engineer
+        </p>
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
+          <span className="flex items-center gap-2">
+            <Image
+              src="/location.png"
+              alt=""
+              width={16}
+              height={16}
+              className="dark:invert opacity-70"
+            />
+            Jaipur, India
+          </span>
+          <span className="hidden tablet:inline text-border">|</span>
+          <span className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+            Product Engineer at Shurutech
+          </span>
         </div>
-        <p className="mt-6 max-w-xl text-lg text-muted-strong">
-          Backend, frontend, and mobile developer with{" "}
-          {yearsOfExperience(CAREER_START)}+ years building products end to
-          end.
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-strong">
+          {yearsOfExperience(CAREER_START)}+ years building backend systems
+          in Go and TypeScript, with production experience across mobile
+          and web.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <SocialBtn

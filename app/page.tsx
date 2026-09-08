@@ -59,22 +59,39 @@ const TIMELINE_DATA = [
   },
 ];
 
-const PROJECT = {
-  title: "Workout Tracker",
-  tagline: "workout.agastya-rajawat.in",
-  description:
-    "A workout tracking app I built and actually use myself — build routines, log sessions in real time, and see progress over time. Open to the public with its own sign up.",
-  features: [
-    "Routine builder",
-    "Live logger with pre-filled sets",
-    "Backfill past workouts",
-    "Per-exercise progress charts",
-    "Consistency heatmap",
-    "Global & per-routine streaks",
-  ],
-  link: "https://workout.agastya-rajawat.in",
-  cover_img: "/workout-tracker-home.png",
-};
+const PROJECTS = [
+  {
+    title: "Workout Tracker",
+    tagline: "workout.agastya-rajawat.in",
+    description:
+      "A workout tracking app I built and actually use myself — build routines, log sessions in real time, and see progress over time. Open to the public with its own sign up.",
+    features: [
+      "Routine builder",
+      "Live logger with pre-filled sets",
+      "Backfill past workouts",
+      "Per-exercise progress charts",
+      "Consistency heatmap",
+      "Global & per-routine streaks",
+    ],
+    link: "https://workout.agastya-rajawat.in",
+    cover_img: "/workout-tracker-home.png",
+    badge: "Live" as const,
+  },
+  {
+    title: "This Site",
+    tagline: "github.com/Agastya909/personal-website",
+    description:
+      "This portfolio, open source. Next.js, TypeScript, and Tailwind — fork it and make it your own.",
+    features: [
+      "Light & dark theme, no JS-heavy widgets",
+      "Card-free, typography-led design",
+      "Easy to fork and customize",
+    ],
+    link: "https://github.com/Agastya909/personal-website",
+    cover_img: "/portfolio-home.jpg",
+    badge: "Open source" as const,
+  },
+];
 
 const SKILLS = [
   {
@@ -139,7 +156,7 @@ function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) 
 
 export default function Home() {
   return (
-    <div id="top" className="mx-auto max-w-3xl px-6 pb-24 tablet:px-10">
+    <div id="top" className="mx-auto max-w-[940px] px-6 pb-24 tablet:px-10">
       <Nav />
 
       <section className="animate-fade-up">
@@ -208,8 +225,12 @@ export default function Home() {
       <section id="projects" className="mt-24 scroll-mt-24">
         <SectionHeading eyebrow="Projects" title="Something I've shipped" />
         <Divider />
-        <div className="mt-4">
-          <ProjectShowcase {...PROJECT} />
+        <div className="mt-4 flex flex-col divide-y divide-border">
+          {PROJECTS.map((project) => (
+            <div key={project.title} className="py-8 first:pt-0">
+              <ProjectShowcase {...project} />
+            </div>
+          ))}
         </div>
       </section>
 

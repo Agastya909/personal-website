@@ -1,43 +1,6 @@
-type MonthYear = { year: number; month: number };
+import { formatDuration, formatMonthYear, type MonthYear } from "../lib/dates";
 
-const MONTH_ABBR = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
-function formatMonthYear({ year, month }: MonthYear): string {
-  return `${MONTH_ABBR[month - 1]} '${String(year).slice(2)}`;
-}
-
-function formatDuration(start: MonthYear, end: MonthYear | null): string {
-  const endResolved = end ?? {
-    year: new Date().getFullYear(),
-    month: new Date().getMonth() + 1,
-  };
-  let totalMonths =
-    (endResolved.year - start.year) * 12 + (endResolved.month - start.month) + 1;
-  totalMonths = Math.max(totalMonths, 1);
-
-  const years = Math.floor(totalMonths / 12);
-  const months = totalMonths % 12;
-
-  const parts: string[] = [];
-  if (years > 0) parts.push(`${years} yr${years > 1 ? "s" : ""}`);
-  if (months > 0) parts.push(`${months} mo`);
-  return parts.join(" ");
-}
-
-export default function WorkHistoryHybrid({
+export default function WorkHistoryEntry({
   role,
   company,
   start,

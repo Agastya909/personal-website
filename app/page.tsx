@@ -5,6 +5,9 @@ import Nav from "./components/nav";
 import ProjectShowcase from "./components/projectShowcase";
 import Divider from "./components/divider";
 import SkillsStacked from "./components/skillsStacked";
+import { yearsOfExperience } from "./lib/dates";
+
+const CAREER_START = { year: 2023, month: 2 };
 
 const TIMELINE_DATA = [
   {
@@ -155,8 +158,9 @@ export default function Home() {
           Jaipur, India
         </div>
         <p className="mt-6 max-w-xl text-lg text-muted-strong">
-          Backend, frontend, and mobile developer with 2+ years building
-          products end to end.
+          Backend, frontend, and mobile developer with{" "}
+          {yearsOfExperience(CAREER_START)}+ years building products end to
+          end.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <SocialBtn
